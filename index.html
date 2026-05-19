@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vexvision Vienna 2026</title>
+    
+    <title>Vexvision song contest!!!</title>
+    
+    <link rel="icon" type="image/png" href="vexvision-heart.png">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
@@ -34,6 +38,12 @@
             flex-direction: column;
             overflow-x: hidden;
             position: relative;
+
+            /* Prevents users from highlighting and selecting text on the page */
+            user-select: none;
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
         }
 
         /* Abstract Background Golden Heart Art Structure */
@@ -71,25 +81,33 @@
             gap: 25px;
         }
 
-        /* Top Left Image Logo (Your Eurovision Heart) */
+        /* Top Left Image Logo */
         .heart-logo {
             height: 34px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 0 10px rgba(255, 31, 109, 0.4));
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .heart-logo:hover {
             transform: scale(1.08);
         }
 
+        /* Interactive Navigation Links with Dropdowns */
         .nav-links {
             display: flex;
             gap: 25px;
+            list-style: none;
         }
 
-        .nav-links a {
+        .nav-item {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-item > a {
             color: var(--text-light);
             text-decoration: none;
             font-size: 0.9rem;
@@ -100,21 +118,63 @@
             transition: opacity 0.2s;
         }
 
-        .nav-links a:hover {
+        .nav-item:hover > a {
             opacity: 0.8;
+            color: var(--accent-pink);
         }
 
-        .nav-links a::after {
+        .has-dropdown > a::after {
             content: ' ▾';
             font-size: 0.6rem;
             color: var(--text-muted);
+            transition: transform 0.2s;
         }
 
-        .nav-links a.no-arrow::after {
-            display: none;
+        .has-dropdown:hover > a::after {
+            transform: rotate(180deg);
+            color: var(--accent-pink);
         }
 
-        /* Center Text Branding Restored */
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(18, 14, 28, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            list-style: none;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 31, 109, 0.1);
+            color: var(--text-light);
+        }
+
+        /* Center Text Branding */
         .nav-center {
             position: absolute;
             left: 50%;
@@ -124,6 +184,7 @@
             font-size: 1.1rem;
             text-align: center;
             line-height: 1;
+            pointer-events: none; /* Keeps it from interfering with clicks */
         }
 
         .nav-center span {
@@ -280,13 +341,29 @@
 
     <header>
         <div class="nav-left">
-            <img src="vexvision-heart.png" alt="Vexvision Heart" class="heart-logo">
+            <img src="vexvision-heart.png" alt="Vexvision Heart" class="heart-logo" onclick="window.location.reload();">
             
-            <div class="nav-links">
-                <a href="#">Vienna 2026</a>
-                <a href="#">Delegations</a>
-                <a href="#" class="no-arrow">About</a>
-            </div>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="#vienna">Vienna 2026</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="alert('Stage design showcases dropping soon!')">The Stage</a></li>
+                        <li><a href="#" onclick="alert('Wiener Stadthalle virtual venue access opens closer to the show.')">The Venue</a></li>
+                        <li><a href="#" onclick="alert('Schedule timings will be coordinated with server runtimes.')">Show Schedule</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="#delegations">Delegations</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://discord.gg/PE5ghAWX5t" target="_blank">Sign Up as Country</a></li>
+                        <li><a href="#" onclick="alert('Rulebook PDF document is currently compiling.')">Contest Rules</a></li>
+                        <li><a href="#" onclick="alert('Audio submission portals are locked until pre-qualifying rounds.')">Submit Track</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="https://discord.gg/PE5ghAWX5t" target="_blank" style="padding-right: 0;">About</a>
+                </li>
+            </ul>
         </div>
         
         <div class="nav-center">
@@ -295,7 +372,7 @@
         </div>
 
         <div class="nav-right">
-            <div class="profile-icon">👤</div>
+            <div class="profile-icon" onclick="alert('Account system unlocks post-launch.')">👤</div>
             <a href="https://discord.gg/PE5ghAWX5t" target="_blank" class="btn-pill">Join Now!</a>
         </div>
     </header>
