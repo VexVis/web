@@ -3,240 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vexvision 2026 | Coming Soon</title>
+    <title>Vexvision Vienna 2026</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
         :root {
-            --primary-glow: #8e44ad;
-            --secondary-glow: #3498db;
-            --bg-dark: #0b0813;
-            --card-bg: rgba(255, 255, 255, 0.04);
+            --bg-color: #07060b;
             --text-light: #ffffff;
-            --text-muted: #a4b0be;
-            --vex-accent: #00d2d3;
+            --text-muted: #b3b2b6;
+            --accent-pink: #ff1f6d;
+            --accent-gold: #dfb76c;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: radial-gradient(circle at center, #1b103a 0%, var(--bg-dark) 100%);
+            background: 
+                radial-gradient(circle at 40% 30%, rgba(223, 183, 108, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, rgba(255, 31, 109, 0.12) 0%, transparent 60%),
+                linear-gradient(180deg, #120e1c 0%, var(--bg-color) 100%);
+            background-color: var(--bg-color);
             color: var(--text-light);
-            overflow-x: hidden;
-            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Header Navigation */
+        /* Abstract Background Golden Heart Art Structure (Mimicking Image) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(223, 183, 108, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Navigation Bar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(11, 8, 19, 0.85);
-            backdrop-filter: blur(12px);
+            padding: 25px 4%;
+            background: linear-gradient(180deg, rgba(7, 6, 11, 0.95) 0%, rgba(7, 6, 11, 0.6) 100%);
+            backdrop-filter: blur(20px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            background: linear-gradient(45deg, var(--vex-accent), #a29bfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 35px;
         }
 
-        nav a {
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-gold));
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(255, 31, 109, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            margin-left: 25px;
+            font-size: 0.9rem;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--vex-accent);
-        }
-
-        /* Main Landing Layout */
-        .hero {
-            text-align: center;
-            padding: 160px 20px 80px 20px;
-            flex: 1;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            gap: 4px;
+            transition: opacity 0.2s;
         }
 
-        .status-badge {
-            background: rgba(0, 210, 211, 0.15);
-            color: var(--vex-accent);
-            border: 1px solid var(--vex-accent);
-            padding: 6px 16px;
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a::after {
+            content: ' Marie';
+            font-size: 0.6rem;
+            content: ' ▾';
+            color: var(--text-muted);
+        }
+
+        .nav-links a.no-arrow::after {
+            display: none;
+        }
+
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 900;
+            letter-spacing: 4px;
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .nav-center span {
+            display: block;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-icon {
+            color: var(--text-light);
+            opacity: 0.8;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-pill {
+            background-color: var(--text-light);
+            color: #000000;
+            text-decoration: none;
+            padding: 10px 24px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            box-shadow: 0 0 15px rgba(0, 210, 211, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .hero h1 {
-            font-size: 5.5rem;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 8px;
+        .btn-pill:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Layout Mainframe */
+        .hero-container {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 5% 120px 5%;
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            text-align: left;
+        }
+
+        /* Main Dynamic Typography Headline */
+        .hero-content h1 {
+            font-size: 5rem;
             font-weight: 900;
-            background: linear-gradient(to bottom, #ffffff, #b2bec3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 30px rgba(142, 68, 173, 0.6));
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
         }
 
-        /* Animated Coming Soon Text */
-        .coming-soon {
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, #fff, var(--vex-accent), #a29bfe, #fff);
+        .highlight-pink {
+            color: var(--accent-pink);
+        }
+
+        /* Animated Shimmer Coming Soon Text */
+        .animated-coming-soon {
+            display: inline-block;
+            background: linear-gradient(90deg, #ffffff, var(--accent-gold), var(--accent-pink), #ffffff);
             background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShine 4s linear infinite;
+            animation: shineAnimation 5s linear infinite;
         }
 
-        @keyframes gradientShine {
+        @keyframes shineAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Venue Spotlight Card */
-        .venue-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 20px 40px;
-            border-radius: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 40px;
-        }
-
-        .venue-icon {
-            font-size: 2rem;
-            background: linear-gradient(45deg, #ff7675, #fd79a8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .venue-details {
-            text-align: left;
-        }
-
-        .venue-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        .venue-location {
-            font-size: 0.9rem;
+        .hero-description {
+            font-size: 1.05rem;
             color: var(--text-muted);
+            margin-bottom: 35px;
+            font-weight: 400;
+            max-width: 500px;
+            line-height: 1.5;
         }
 
-        /* Action Controls */
-        .cta-group {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 35px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Secondary Transparent Action Button */
+        .btn-action {
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: var(--text-light);
             text-decoration: none;
-        }
-
-        .btn-discord {
-            background: linear-gradient(45deg, #5865F2, #7289DA);
-            color: white;
-            border: none;
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
-        }
-
-        .btn-discord:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.7);
-        }
-
-        /* Footer Attribution */
-        footer {
-            text-align: center;
-            padding: 30px;
+            padding: 12px 28px;
+            border-radius: 50px;
             font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: #06040a;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-action:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Precise Footer Signature Blocks */
+        footer {
+            position: absolute;
+            bottom: 30px;
+            left: 5%;
+            right: 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .footer-right {
+            font-weight: 700;
             letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .nav-links, .profile-icon {
+                display: none;
+            }
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                bottom: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">VEXVISION</div>
-        <nav>
-            <a href="#">Overview</a>
-            <a href="#">Venue</a>
-            <a href="https://discord.gg/PE5ghAWX5t" target="_blank">Discord</a>
-        </nav>
-    </header>
-
-    <main class="hero">
-        <div class="status-badge">Production Phase</div>
-        <h1>Vexvision</h1>
-        <div class="coming-soon">Coming Soon</div>
-        
-        <div class="venue-card">
-            <div class="venue-details">
-                <div class="venue-title">Wiener Stadthalle</div>
-                <div class="venue-location">Host Venue  • Vienna</div>
+        <div class="nav-left">
+            <div class="logo-mark"></div>
+            <div class="nav-links">
+                <a href="#">Vienna 2026</a>
+                <a href="#">Delegations</a>
+                <a href="#" class="no-arrow">About</a>
             </div>
         </div>
+        <div class="nav-center">
+            VEXVISION
+            <span>SONG CONTEST</span>
+        </div>
+        <div class="nav-right">
+            <div class="profile-icon">👤</div>
+            <a href="https://discord.gg/PE5ghAWX5t" target="_blank" class="btn-pill">Join Now!</a>
+        </div>
+    </header>
 
-        <div class="cta-group">
-            <a href="https://discord.gg/PE5ghAWX5t" target="_blank" class="btn btn-discord">Join Now!</a>
+    <main class="hero-container">
+        <div class="hero-content">
+            <h1>
+                <span class="highlight-pink">VEXVISION</span><br>
+                is <span class="animated-coming-soon">coming soon</span><br>
+                to Vienna
+            </h1>
+            <p class="hero-description">
+                Preparation is underway for the next generation of virtual music and staging design production live from the Wiener Stadthalle.
+            </p>
+            <a href="https://discord.gg/PE5ghAWX5t" target="_blank" class="btn-action">Access Discord Portal</a>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 Vexvision Production Team. All Rights Reserved. Built for the Roblox Community. Independent project unassociated with the EBU.
+        <div class="footer-left">
+            &copy; 2026 Vexvision. All Rights Reserved. Independent Roblox community production.
+        </div>
+        <div class="footer-right">
+            Host Venue: Wiener Stadthalle
+        </div>
     </footer>
+
 </body>
 </html>
