@@ -9,25 +9,26 @@
     <link rel="icon" type="image/png" href="vexvision-heart.png">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --bg: #07060b;
-            --surface: rgba(255, 255, 255, 0.03);
-            --surface-hover: rgba(255, 255, 255, 0.06);
-            --text: #ffffff;
-            --muted: #b3b2b6;
-            --pink: #ff1f6d;
-            --border: rgba(255, 255, 255, 0.08);
-            --radius-lg: 18px;
-            --radius-sm: 12px;
+            --apple-bg: #030206;
+            --liquid-glass: rgba(255, 255, 255, 0.04);
+            --liquid-glass-hover: rgba(255, 255, 255, 0.09);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-specular: rgba(255, 255, 255, 0.12);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1a6;
+            --apple-pink: #ff1f6d;
+            --radius-premium: 22px;
+            --radius-card: 14px;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -35,13 +36,17 @@
         }
         
         body {
-            background: var(--bg);
-            color: var(--text);
+            background: var(--apple-bg);
+            color: var(--text-primary);
             overflow-x: hidden;
             min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(255, 31, 109, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 15% 70%, rgba(120, 40, 255, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
         }
         
-        /* ================= TOPBAR ================= */
+        /* ================= APPLE TOPBAR ================= */
         
         header {
             position: fixed;
@@ -50,257 +55,277 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 5%;
-            background: rgba(7, 6, 11, 0.85);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 16px 6%;
+            background: rgba(10, 9, 14, 0.4);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-bottom: 1px solid var(--glass-border);
             z-index: 100;
         }
         
         .logo {
-            height: 40px;
+            height: 38px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.06) rotate(-2deg);
         }
         
         .nav {
             display: flex;
-            gap: 24px;
+            gap: 28px;
             align-items: center;
         }
         
         .nav a {
-            color: white;
+            color: var(--text-primary);
             text-decoration: none;
-            font-weight: 600;
-            opacity: 0.8;
+            font-weight: 500;
+            opacity: 0.75;
             cursor: pointer;
-            transition: all 0.25s ease;
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .nav a:hover {
             opacity: 1;
-            color: var(--pink);
+            color: var(--apple-pink);
         }
         
         .btn {
-            padding: 10px 20px;
-            border-radius: 50px;
-            background: white;
-            color: black !important;
-            font-weight: 800;
-            transition: all 0.3s ease;
+            padding: 9px 22px;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #000000 !important;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+            background: #ffffff;
+            transform: scale(1.04);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
         }
         
-        /* ================= PAGE SYSTEM ================= */
+        /* ================= LIQUID GLASS SYSTEM ================= */
         
         .page {
             position: absolute;
             width: 100%;
             min-height: 100vh;
-            padding: 120px 5% 80px;
+            padding: 130px 6% 80px;
             opacity: 0;
-            transform: translateY(20px);
+            transform: scale(0.98) translateY(15px);
             pointer-events: none;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .page.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1) translateY(0);
             pointer-events: auto;
         }
         
-        /* ================= HERO ================= */
+        /* ================= HERO TEXT ================= */
         
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 3.8rem);
+            font-size: clamp(2.6rem, 6.5vw, 4rem);
             font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 5px;
         }
         
         .pink {
-            color: var(--pink);
+            background: linear-gradient(135deg, #ff1f6d 0%, #ff6097 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        /* ================= NEWS ================= */
+        /* ================= LIQUID GLASS CARDS ================= */
         
         .news-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
             max-width: 1200px;
         }
         
         .news-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
+            background: var(--liquid-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-specular);
+            border-radius: var(--radius-premium);
             overflow: hidden;
-            transition: all 0.35s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .news-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255, 31, 109, 0.4);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            background: var(--liquid-glass-hover);
+            border-color: rgba(255, 31, 109, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         
         .news-card img {
             width: 100%;
-            height: 240px;
+            height: 230px;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .news-card:hover img {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
         
         .news-content {
-            padding: 24px;
+            padding: 28px;
         }
         
         .news-meta {
-            color: var(--pink);
+            color: var(--apple-pink);
             font-size: 0.8rem;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
         .news-title {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
-            margin: 8px 0;
-            line-height: 1.3;
+            margin: 10px 0;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
         }
         
         .news-text {
-            color: var(--muted);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+            font-size: 0.98rem;
+            line-height: 1.55;
         }
         
         .read {
-            color: white;
-            font-weight: 800;
+            color: var(--text-primary);
+            font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            transition: color 0.2s ease;
+            transition: color 0.3s ease;
         }
         
         .read:hover {
-            color: var(--pink);
+            color: var(--apple-pink);
         }
         
-        /* ================= ODDS ================= */
+        /* ================= LIQUID GLASS ODDS ================= */
         
         .odds-title {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 900;
+            letter-spacing: -1.2px;
         }
         
         .odds-subtitle {
-            color: var(--muted);
-            margin-top: 10px;
-            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-size: 1.1rem;
+            letter-spacing: -0.1px;
         }
         
         .odds-box {
-            margin-top: 30px;
-            max-width: 700px;
+            margin-top: 35px;
+            max-width: 650px;
         }
         
         .odds-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-sm);
-            color: white;
+            padding: 18px 24px;
+            margin-bottom: 14px;
+            background: var(--liquid-glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-specular);
+            border-radius: var(--radius-card);
+            color: var(--text-primary);
             font-weight: 600;
-            transition: all 0.25s ease;
+            letter-spacing: -0.2px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .odds-item:hover {
-            background: var(--surface-hover);
-            border-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(4px);
+            background: var(--liquid-glass-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(6px);
         }
         
         .odds-item span {
-            color: var(--muted);
+            color: var(--text-secondary);
             font-weight: 400;
         }
         
-        /* ================= MODAL ================= */
+        /* ================= APPLE MODAL SYSTEM ================= */
         
         .modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
             justify-content: center;
             align-items: center;
             z-index: 200;
-            padding: 20px;
+            padding: 24px;
         }
         
         .modal-content {
-            background: #11101a;
-            border: 1px solid var(--border);
-            padding: 35px;
-            border-radius: var(--radius-lg);
-            max-width: 600px;
+            background: rgba(20, 19, 26, 0.7);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-specular);
+            padding: 40px;
+            border-radius: var(--radius-premium);
+            max-width: 580px;
             width: 100%;
             position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            animation: modalFade 0.3s ease;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            animation: appleSheet 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        @keyframes modalFade {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes appleSheet {
+            from { opacity: 0; transform: scale(0.94) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
         
         .close {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 22px;
+            right: 26px;
             cursor: pointer;
-            font-size: 28px;
-            color: var(--muted);
-            transition: color 0.2s ease;
+            font-size: 26px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
         }
         
         .close:hover {
-            color: var(--pink);
+            color: var(--apple-pink);
         }
     </style>
 </head>
 <body>
 
-    <!-- TOPBAR -->
     <header>
         <img class="logo" src="vexvision-heart.png" alt="Logo" onclick="go('home')">
 
@@ -311,13 +336,11 @@
         </div>
     </header>
 
-    <!-- HOME PAGE -->
     <section id="home" class="page active">
         <div class="hero">
             <h1><span class="pink">VEXVISION</span> Song Contest</h1>
             
             <div class="news-container">
-                <!-- NEWS 1 -->
                 <div class="news-card">
                     <img src="https://th.bing.com/th/id/R.1b022723dc3ed3deae70b1c86203c9c4?rik=tI1vo6rdnBMHRw&pid=ImgRaw&r=0" alt="Launch">
                     <div class="news-content">
@@ -328,7 +351,6 @@
                     </div>
                 </div>
 
-                <!-- NEWS 2 -->
                 <div class="news-card">
                     <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1400&auto=format&fit=crop" alt="Preparation">
                     <div class="news-content">
@@ -342,7 +364,6 @@
         </div>
     </section>
 
-    <!-- ODDS PAGE -->
     <section id="odds" class="page">
         <h1 class="odds-title"><span class="pink">Odds</span></h1>
         <p class="odds-subtitle">Prediction system not active yet.</p>
@@ -360,7 +381,6 @@
         </div>
     </section>
 
-    <!-- SYSTEM MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">×</span>
@@ -368,27 +388,26 @@
         </div>
     </div>
 
-    <!-- CODE SCRIPT LOGIC -->
     <script>
         const news = {
             1: `
-                <h2 style="font-size:1.8rem; font-weight:900; margin-bottom:15px;"><span class="pink">Vexvision Song Contest</span><br>Website launch</h2>
-                <p style="color:#b3b2b6; margin-top:10px; line-height:1.6;">
+                <h2 style="font-size:1.8rem; font-weight:900; letter-spacing:-0.6px; margin-bottom:15px;"><span class="pink">Vexvision Song Contest</span><br>Website launch</h2>
+                <p style="color:#a1a1a6; margin-top:10px; line-height:1.6; font-size:1rem;">
                     We are excited to officially launch the first public version of the Vexvision Song Contest website.
                 </p>
-                <p style="color:#b3b2b6; margin-top:10px; line-height:1.6;">
+                <p style="color:#a1a1a6; margin-top:10px; line-height:1.6; font-size:1rem;">
                     The website introduces the new identity, announcement hub, and community access portal.
                 </p>
-                <p style="color:#b3b2b6; margin-top:10px; line-height:1.6;">
+                <p style="color:#a1a1a6; margin-top:10px; line-height:1.6; font-size:1rem;">
                     More updates coming soon.
                 </p>
             `,
             2: `
-                <h2 style="font-size:1.8rem; font-weight:900; margin-bottom:15px;">Contest preparation begins</h2>
-                <p style="color:#b3b2b6; margin-top:10px; line-height:1.6;">
+                <h2 style="font-size:1.8rem; font-weight:900; letter-spacing:-0.6px; margin-bottom:15px;">Contest preparation begins</h2>
+                <p style="color:#a1a1a6; margin-top:10px; line-height:1.6; font-size:1rem;">
                     Early development for VVSC 2026 has officially started.
                 </p>
-                <p style="color:#b3b2b6; margin-top:10px; line-height:1.6;">
+                <p style="color:#a1a1a6; margin-top:10px; line-height:1.6; font-size:1rem;">
                     More systems including voting, staging, and country registration will be introduced soon.
                 </p>
             `
