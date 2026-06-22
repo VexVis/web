@@ -20,7 +20,6 @@
             --text-main: #ffffff;
             --text-sub: rgba(255, 255, 255, 0.65);
             --vibrant-pink: #ff1f6d;
-            --vibrant-gold: #dfb76c;
             --blur-fluid: blur(40px) saturate(210%);
         }
         
@@ -31,8 +30,6 @@
             font-family: 'Inter', -apple-system, sans-serif;
             user-select: none;
             -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
         }
         
         body {
@@ -60,7 +57,7 @@
             z-index: -1;
         }
         
-        /* ================= LIQUID GLASS NAVIGATION ================= */
+        /* ================= NAVIGATION ================= */
         
         header {
             position: fixed;
@@ -77,7 +74,7 @@
             border: 1px solid var(--glass-border);
             border-top: 1px solid var(--glass-specular);
             border-radius: 100px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             z-index: 100;
         }
         
@@ -87,9 +84,7 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .logo:hover {
-            transform: scale(1.08);
-        }
+        .logo:hover { transform: scale(1.08); }
         
         .nav {
             display: flex;
@@ -98,7 +93,6 @@
             background: rgba(255, 255, 255, 0.03);
             padding: 4px;
             border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
         }
         
         .nav a {
@@ -109,20 +103,11 @@
             border-radius: 100px;
             cursor: pointer;
             font-size: 0.9rem;
-            letter-spacing: -0.2px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .nav a:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--vibrant-pink);
-        }
-
-        .nav a.active-tab {
-            background: rgba(255, 255, 255, 0.12);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+        .nav a:hover { color: var(--vibrant-pink); }
+        .nav a.active-tab { background: rgba(255, 255, 255, 0.12); }
         
         .btn {
             padding: 10px 24px;
@@ -131,16 +116,12 @@
             color: #000000 !important;
             font-weight: 700;
             font-size: 0.9rem;
-            letter-spacing: -0.3px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
-        }
+        .btn:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25); }
         
-        /* ================= CANVAS VIEWPORT SYSTEM ================= */
+        /* ================= VIEWPORT SYSTEM ================= */
         
         .page {
             position: absolute;
@@ -153,46 +134,19 @@
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .page.active {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
-        }
+        .page.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
         
-        /* ================= IMMERSIVE HERO OVERLAY ================= */
+        .hero { max-width: 1200px; text-align: left; }
+        .hero h1 { font-size: clamp(3rem, 7.5vw, 4.8rem); font-weight: 900; letter-spacing: -2px; line-height: 1.05; }
+        .pink { color: var(--vibrant-pink); }
+        .hero-desc { font-size: 1.15rem; color: var(--text-sub); max-width: 520px; margin: 15px 0 35px 0; }
         
-        .hero {
-            max-width: 1200px;
-            text-align: left;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 7.5vw, 4.8rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1.05;
-            margin-bottom: 15px;
-        }
-        
-        .pink {
-            color: var(--vibrant-pink);
-        }
-
-        .hero-desc {
-            font-size: 1.15rem;
-            color: var(--text-sub);
-            max-width: 520px;
-            margin-bottom: 35px;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-        
-        /* ================= LIQUID GLASS CARD SYSTEM ================= */
+        /* ================= CARDS SYSTEM ================= */
         
         .news-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
         
@@ -202,7 +156,7 @@
             -webkit-backdrop-filter: var(--blur-fluid);
             border: 1px solid var(--glass-border);
             border-top: 1px solid var(--glass-specular);
-            border-radius: 28px;
+            border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -212,80 +166,37 @@
             transform: translateY(-6px);
             background: var(--liquid-surface);
             border-color: rgba(255, 31, 109, 0.25);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
         
-        .news-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .news-card:hover img {
-            transform: scale(1.04);
-        }
-        
-        .news-content {
-            padding: 30px;
-        }
-        
-        .news-meta {
-            color: var(--vibrant-pink);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-        }
-        
-        .news-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 10px 0 12px;
-            letter-spacing: -0.4px;
-            line-height: 1.25;
-        }
+        .news-card img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.6s; }
+        .news-card:hover img { transform: scale(1.04); }
+        .news-content { padding: 24px; }
+        .news-meta { color: var(--vibrant-pink); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .news-title { font-size: 1.3rem; font-weight: 800; margin: 8px 0 14px; line-height: 1.25; }
         
         .pill-trigger {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 100px;
             color: var(--text-main);
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
-            display: inline-flex;
             transition: all 0.3s ease;
         }
         
-        .pill-trigger:hover {
-            background: #ffffff;
-            color: #000000;
-        }
+        .pill-trigger:hover { background: #ffffff; color: #000000; }
         
-        /* ================= LIQUID GLASS ODDS SYSTEM ================= */
+        /* ================= ODDS SYSTEM ================= */
         
-        .odds-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-        }
-        
-        .odds-subtitle {
-            color: var(--text-sub);
-            margin: 8px 0 40px 0;
-            font-size: 1.1rem;
-        }
-        
-        .odds-box {
-            max-width: 650px;
-        }
+        .odds-title { font-size: 3.5rem; font-weight: 900; }
+        .odds-subtitle { color: var(--text-sub); margin: 8px 0 40px 0; }
+        .odds-box { max-width: 650px; }
         
         .odds-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 20px 26px;
             margin-bottom: 14px;
             background: var(--liquid-core);
@@ -294,31 +205,22 @@
             border: 1px solid var(--glass-border);
             border-top: 1px solid var(--glass-specular);
             border-radius: 18px;
-            color: var(--text-main);
             font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s;
         }
         
-        .odds-item:hover {
-            background: var(--liquid-surface);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateX(6px);
-        }
+        .odds-item:hover { transform: translateX(6px); background: var(--liquid-surface); }
+        .odds-item span { color: var(--text-sub); font-weight: 400; }
         
-        .odds-item span {
-            color: var(--text-sub);
-            font-weight: 400;
-        }
-        
-        /* ================= PREMIUM LIQUID SHEET MODAL ================= */
+        /* ================= MODAL SHEET ================= */
         
         .modal {
             display: none;
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(30px) saturate(150%);
-            -webkit-backdrop-filter: blur(30px) saturate(150%);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             justify-content: center;
             align-items: center;
             z-index: 200;
@@ -329,102 +231,97 @@
             background: rgba(20, 18, 28, 0.6);
             border: 1px solid var(--glass-border);
             border-top: 1px solid var(--glass-specular);
-            padding: 45px;
+            padding: 40px;
             border-radius: 32px;
-            max-width: 580px;
+            max-width: 500px;
             width: 100%;
             position: relative;
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-            animation: modalSheet 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: modalSheet 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         @keyframes modalSheet {
-            from { opacity: 0; transform: scale(0.95) translateY(40px); }
+            from { opacity: 0; transform: scale(0.96) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
         
-        .close {
-            position: absolute;
-            top: 24px;
-            right: 28px;
-            cursor: pointer;
-            font-size: 26px;
-            color: var(--text-sub);
-            transition: color 0.3s ease;
-        }
-        
-        .close:hover {
-            color: var(--vibrant-pink);
-        }
+        .close { position: absolute; top: 20px; right: 24px; cursor: pointer; font-size: 24px; color: var(--text-sub); }
+        .close:hover { color: var(--vibrant-pink); }
     </style>
 </head>
 <body>
 
-    <!-- LIQUID LAYER STAGED CONTENT -->
-    <img class="bg-ambient" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1600&auto=format&fit=crop" alt="Stage Atmosphere">
+    <img class="bg-ambient" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1600&auto=format&fit=crop" alt="Stage">
     <div class="bg-overlay"></div>
 
-    <!-- FLOATING APPLE TOPBAR -->
     <header>
         <img class="logo" src="vexvision-heart.png" alt="Logo" onclick="go('home')">
-
         <div class="nav">
             <a id="tab-home" class="active-tab" onclick="go('home')">Home</a>
             <a id="tab-odds" onclick="go('odds')">Odds</a>
         </div>
-
         <a class="btn" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSflLaDmZ6r1yTRZvJeD4jku7faaEq97WzdnMs1GdurMEScjPQ/viewform?usp=send_form">Apply HoD</a>
     </header>
 
-    <!-- CONTENT PORTALS -->
     <section id="home" class="page active">
         <div class="hero">
             <h1><span class="pink">VEXVISION</span><br>Song Contest</h1>
-            <p class="hero-desc">Congratulations to Bulgaria on achieving its first-ever Eurovision victory! Read below for production logs.</p>
+            <p class="hero-desc">Bulgaria wins the latest edition. Read the core production updates below.</p>
             
             <div class="news-container">
-                <!-- SNEAK PEEK LOG 1 -->
+                <!-- CARD 1 -->
                 <div class="news-card">
-                    <img src="https://images.unsplash.com/photo-1545232979-8bf34eb9757b?q=80&w=1400&auto=format&fit=crop" alt="Tech Infrastructure">
+                    <img src="https://th.bing.com/th/id/R.1b022723dc3ed3deae70b1c86203c9c4?rik=tI1vo6rdnBMHRw&pid=ImgRaw&r=0" alt="Launch">
                     <div class="news-content">
-                        <div class="news-meta">Log • Server Config</div>
-                        <div class="news-title">Timezone calibration completed</div>
-                        <div class="pill-trigger" onclick="openModal(1)">View network timeline sync</div>
+                        <div class="news-meta">Release</div>
+                        <div class="news-title">Official website live</div>
+                        <div class="pill-trigger" onclick="openModal(1)">Read More</div>
                     </div>
                 </div>
 
-                <!-- SNEAK PEEK LOG 2 -->
+                <!-- CARD 2 -->
                 <div class="news-card">
-                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1400&auto=format&fit=crop" alt="Production Office Setup">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1400&auto=format&fit=crop" alt="Setup">
                     <div class="news-content">
-                        <div class="news-meta">Log • Venue Hospitality</div>
-                        <div class="news-title">Green room lounges curated</div>
-                        <div class="pill-trigger" onclick="openModal(2)">Check delegacy refreshments</div>
+                        <div class="news-meta">Production</div>
+                        <div class="news-title">Preparations begin</div>
+                        <div class="pill-trigger" onclick="openModal(2)">Read More</div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1400&auto=format&fit=crop" alt="Servers">
+                    <div class="news-content">
+                        <div class="news-meta">Network</div>
+                        <div class="news-title">Server clock sync</div>
+                        <div class="pill-trigger" onclick="openModal(3)">Read More</div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1545232979-8bf34eb9757b?q=80&w=1400&auto=format&fit=crop" alt="Lounge">
+                    <div class="news-content">
+                        <div class="news-meta">Logistics</div>
+                        <div class="news-title">Green rooms ready</div>
+                        <div class="pill-trigger" onclick="openModal(4)">Read More</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ODDS PREDICTION LAYER -->
     <section id="odds" class="page">
         <h1 class="odds-title"><span class="pink">Odds</span> Hub</h1>
-        <p class="odds-subtitle">Prediction core metrics system not active yet.</p>
-
+        <p class="odds-subtitle">Predictions are currently closed.</p>
         <div class="odds-box">
-            <div class="odds-item">
-                Germany <span>—</span>
-            </div>
-            <div class="odds-item">
-                Sweden <span>—</span>
-            </div>
-            <div class="odds-item">
-                Netherlands <span>—</span>
-            </div>
+            <div class="odds-item">Germany <span>—</span></div>
+            <div class="odds-item">Sweden <span>—</span></div>
+            <div class="odds-item">Netherlands <span>—</span></div>
         </div>
     </section>
 
-    <!-- SYSTEM LAYER INTERFACE SHEET -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">×</span>
@@ -432,37 +329,17 @@
         </div>
     </div>
 
-    <!-- CORE INTERACTION SYSTEMS ARCHITECTURE -->
     <script>
         const news = {
-            1: `
-                <h2 style="font-size:1.8rem; font-weight:900; letter-spacing:-0.6px; margin-bottom:15px;"><span class="pink">System Sync</span><br>Timezone alignment</h2>
-                <p style="color:rgba(255,255,255,0.7); margin-top:10px; line-height:1.6; font-size:1rem;">
-                    To ensure real-time voting nodes and media distribution run smoothly for the next season, the core datacenter is officially anchoring its clock configurations directly to Greenwich Mean Time (GMT).
-                </p>
-                <p style="color:rgba(255,255,255,0.7); margin-top:10px; line-height:1.6; font-size:1rem;">
-                    This allows flawless collaboration across the main European broadcaster feeds during peak show windows.
-                </p>
-            `,
-            2: `
-                <h2 style="font-size:1.8rem; font-weight:900; letter-spacing:-0.6px; margin-bottom:15px;">Hospitality Logistics</h2>
-                <p style="color:rgba(255,255,255,0.7); margin-top:10px; line-height:1.6; font-size:1rem;">
-                    Our design crew has completed mapping out the artists' relaxation layouts. Alongside high-speed rendering rigs, backstage catering spaces are stocking an extensive premium tea menu to keep nerves settled.
-                </p>
-                <p style="color:rgba(255,255,255,0.7); margin-top:10px; line-height:1.6; font-size:1rem;">
-                    A subtle rainy-day atmospheric aesthetic will also run through the interior design motifs this season.
-                </p>
-            `
+            1: `<h2>Website Live</h2><p style="color:rgba(255,255,255,0.7); margin-top:12px; line-height:1.5;">Welcome to the new Vexvision online platform. Access portals and announcements are now active.</p>`,
+            2: `<h2>Prep Initiated</h2><p style="color:rgba(255,255,255,0.7); margin-top:12px; line-height:1.5;">Early work on the 2026 season has started. Voting and country details will follow soon.</p>`,
+            3: `<h2>Timezone Synced</h2><p style="color:rgba(255,255,255,0.7); margin-top:12px; line-height:1.5;">All database systems are now anchored directly to Greenwich Mean Time (GMT) to manage broadcasting windows.</p>`,
+            4: `<h2>Lounges Curated</h2><p style="color:rgba(255,255,255,0.7); margin-top:12px; line-height:1.5;">Backstage plans are complete. Hospitality spaces feature a specialty hot tea menu and rainy-day layouts.</p>`
         };
 
         function go(page) {
-            document.querySelectorAll('.page').forEach(p => {
-                p.classList.remove('active');
-            });
-            document.querySelectorAll('.nav a').forEach(a => {
-                a.classList.remove('active-tab');
-            });
-            
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active-tab'));
             document.getElementById(page).classList.add('active');
             document.getElementById('tab-' + page).classList.add('active-tab');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -473,15 +350,8 @@
             document.getElementById("modal").style.display = "flex";
         }
 
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
-
-        window.onclick = function(e) {
-            if (e.target.id === "modal") {
-                closeModal();
-            }
-        }
+        function closeModal() { document.getElementById("modal").style.display = "none"; }
+        window.onclick = function(e) { if (e.target.id === "modal") closeModal(); }
     </script>
 
 </body>
